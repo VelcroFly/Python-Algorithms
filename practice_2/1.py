@@ -8,7 +8,6 @@
 
 
 def calculator():
-    res = 0
     while True:
         operation = input('Введите операцию(+, -, *, /) или 0, чтобы завершить: ')
         if operation == '+' or operation == '-' or operation == '*' or operation == '/' or operation == '0':
