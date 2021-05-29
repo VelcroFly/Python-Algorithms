@@ -1,5 +1,6 @@
 import timeit
 import random
+import cProfile
 
 """Проанализировать скорость и сложность одного любого алгоритма из разработанных
 в рамках домашнего задания первых трех уроков.
@@ -49,35 +50,35 @@ def count_numbers_v3(a, b):
 if __name__ == '__main__':
     n = 1_000_000
     while n != 1_000_000_000:
-        sequence = random.randint(n ** 100, (n + n) ** 100)
+        sequence = random.randint(n ** 1000, (n + n) ** 1000)
         find_value = random.randint(1, 9)
-        # print(timeit.timeit('count_numbers(sequence, find_value)',
-        #       number=10000,
-        #       globals=globals()))
-        # 4.7858973
-        # 6.1776559
-        # 7.8821136
-        # Достигла максимальной глубины рекурсии
+        print(timeit.timeit('count_numbers(sequence, find_value)',
+              number=10000,
+              globals=globals()))
+        cProfile.run('count_numbers(sequence, find_value)')
+        # Достигла максимальной глубины рекурсии на первом вызове
         # print(timeit.timeit('count_numbers_v2(sequence, find_value)',
         #                     number=10000,
         #                     globals=globals()))
-        # 0.9514739
-        # 1.1330882
-        # 1.3398004000000001
-        print(timeit.timeit('count_numbers_v3(sequence, find_value)',
-                            number=10000,
-                            globals=globals()))
-        # 1.9443685
-        # 2.4268754999999995
-        # 3.1367898999999992
+        # cProfile.run('count_numbers_v2(sequence, find_value)')
+        # 15.7692046
+        # 19.8396082
+        # 25.006816
+        # print(timeit.timeit('count_numbers_v3(sequence, find_value)',
+        #                     number=10000,
+        #                     globals=globals()))
+        # cProfile.run('count_numbers_v3(sequence, find_value)')
+        # 145.72374720000002
+        # 197.0959995
+        # 252.80085820000005
         n *= 10
 
 """
 n1 = 1 000 000
 n2 = 10 000 000
 n3 = 100 000 000
-Каждое n дополнительно возводится в степень 100.
-Рекурсивная функция оказалась самой длительной по времени выполнения.
+Каждое n дополнительно возводится в степень 1000.
+Рекурсивная функция оказалась самой длительной по времени выполнения, что видно уже на относительно небольших n.
 К тому же, при некоторых n достигается максимальная глубина рекурсии и вызов функции завершается ошибкой.
 Реализации с циклами for и while выполняются в разы быстрее, чем рекурсивная функция. 
 Решение с циклом for является оптимальным, т.к. происходит только перебор значений, без каких-либо дополнительных
