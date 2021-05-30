@@ -40,4 +40,4 @@ for i in enterprises_list:
 lesser_profit_enterprises = ', '.join(lesser_profit)
 greater_profit_enterprises = ', '.join(greater_profit)
 print(f'У следующих предприятий прибыль ниже средней прибыли: {lesser_profit_enterprises}')
-print(f'У следующих предприятий прибыль ваше средней прибыли: {greater_profit_enterprises}')
+print(f'У следующих предприятий прибыль выше средней прибыли: {greater_profit_enterprises}')
