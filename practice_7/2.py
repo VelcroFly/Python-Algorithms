@@ -28,7 +28,7 @@ def merge_sort(arr):
 
 
 if __name__ == '__main__':
-    array = [i for i in range(50)]
+    array = [random.random() for i in range(50)]
     random.shuffle(array)
     print(array)
     # print(merge_sort([2, 5, 1, 5, 7, 1, 9]))
